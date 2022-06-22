@@ -16,11 +16,11 @@ dotenv.config();
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
-    user: process.env.USER_BD,
-    host: process.env.HOST_BD,
-    database: process.env.DATABASE_BD,
-    password: process.env.PASSWORD_DB,
-    port: process.env.PORT_DB,
+    user: "rvzxsjgepzegys",
+    host: "ec2-34-200-35-222.compute-1.amazonaws.com",
+    database: "ddgj4ln6njjv2r",
+    password: "7eae2f4612d2d3c7067a42c0c9214f8e9cb90f052a5bfab7cf80e23c80a8aae8",
+    port: 5432,
 });
 
 // HOST_BD = "ec2-34-200-35-222.compute-1.amazonaws.com"
