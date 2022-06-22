@@ -3,14 +3,16 @@ const conexao = require("../infraestrutura/conexao")
 class cadastroRolamentos {
     adiciona(rolamento, res) {
 
-        const sql = "INSERT INTO rolamentos SET ?"
+        const sql = `INSERT INTO rolamentos (number, marca, localizacao, observacoes, codigo) VALUES ($1, $2,$3, $4, $5) RETURNING *`
+        // `(${rolamento.number}, ${rolamento.marca}, ${rolamento.localizacao}, ${rolamento.observacoes}, ${rolamento.codigo} )`
 
-        conexao.query(sql, rolamento, (erro, resultados) => {
+        conexao.query(sql, [rolamento.number, rolamento.marca, rolamento.localizacao, rolamento.observacoes, rolamento.codigo], (erro, resultados) => {
             if (erro) {
+                console.log(erro)
                 res.status(400).send(erro)
             } else {
                 console.log(resultados)
-                res.status(201).send(resultados)
+                res.status(201).send(resultados.rows)
             }
         })
     }
@@ -21,7 +23,7 @@ class cadastroRolamentos {
             if (erro) {
                 res.json(erro)
             } else {
-                res.status(203).json(resultados)
+                res.status(203).json(resultados.rows)
             }
         })
 
@@ -33,7 +35,7 @@ class cadastroRolamentos {
             if (erro) {
                 res.json(erro)
             } else {
-                res.json(resultados)
+                res.json(resultados.rows)
             }
         })
     }
