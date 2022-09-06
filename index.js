@@ -13,9 +13,14 @@ conexao.connect((erro) => {
         console.log("conectado ao Banco de Dados")
 
         Tabelas.init(conexao)
+        let port = process.env.PORT
 
-        app.listen(process.env.PORT, () => {
-            console.log("ouvindo a porta " + process.env.PORT);
+        app.get("/", (req, res) =>
+            res.send("acesse: localhost:3333/rolamentos")
+
+        )
+        app.listen(port, () => {
+            console.log("ouvindo a porta " + port);
         })
     }
 })
