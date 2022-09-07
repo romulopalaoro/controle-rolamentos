@@ -16,7 +16,7 @@ conexao.connect((erro) => {
         let port = process.env.PORT
 
         app.get("/", (req, res) =>
-            res.send("acesse: localhost:3333/rolamentos")
+            res.send("https://controle-rolamentos.herokuapp.com/rolamentos")
 
         )
         app.listen(port, () => {
