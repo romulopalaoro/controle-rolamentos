@@ -8,9 +8,13 @@ module.exports = app => {
         cadastroRolamentos.listaRolamentos(res)
     })
 
-    app.post('/cadastro', cors(), (req, res) => {
+    app.post('/cadastro', cors(), async (req, res) => {
         const rolamento = req.body
-        cadastroRolamentos.adiciona(rolamento, res)
+        await cadastroRolamentos.adiciona(rolamento).then((response) => {
+            console.log(response)
+        }).catch((err) => {
+            console.log(err)
+        });
     })
 
     app.get(`/rolamentos/:number`, cors(), (req, res) => {
